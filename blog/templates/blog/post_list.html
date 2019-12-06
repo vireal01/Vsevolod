@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 
 <html lang="en">
+{% extends 'blog/base.html' %}
 {%load static%}
+
 <head>
     <title>Vireal's blog</title>
-    <link href="https://fonts.googleapis.com/css?family=Anton|Bebas+Neue|Solway|Tomorrow:400i&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Anton|Bebas+Neue|Lobster|Solway|Tomorrow:400i&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <meta charset="UTF-8">
 
@@ -16,15 +18,17 @@
     </div>
     <div class="content container">
         <h2>This is just a list of games:</h2>
-
+    {% block content %}
         {% for post in posts %}
             <div class="post">
-                <h2><a href="https://en.wikipedia.org/wiki/{{post.title}}">{{post.title}}</a> </h2>
-                <h4>published: {{ post.published_date}} <a href="https://vk.com/{{post.author}}">{{post.author}}</a> </h4>
+                <div class="date">
+                    {{ post.published_date }} by {{ post.author}}
+                </div>
+                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
                 <p>{{post.text}}</p>
             </div>
         {% endfor %}
-
+    {% endblock %}
         <div>
             <h3> You can find my <em> <strong> VK </strong></em>
                 page <a href="https://vk.com/vireal">here</a> !
