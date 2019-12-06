@@ -4,17 +4,28 @@
     <meta charset="UTF-8">
     <title>Vireal's blog</title>
 </head>
+
 <body>
     <div>
         <h1><a href="/">Vireal's Blog</a></h1>
     </div>
     <div>
-        <h3></h3>
-        <p> You can find my <em> <strong> VK </strong></em>
-            page <a href="https://vk.com/vireal">here</a> ! </p>
+        <h2>This is just a list of games:</h2>
     </div>
-<p></p>
-    <p>It works!</p>
+    {% for post in posts %}
+        <div>
+
+            <h2><a href="https://en.wikipedia.org/wiki/{{post.title}}">{{post.title}}</a> </h2>
+            <h5>published: {{ post.published_date}} <a href="https://vk.com/{{post.author}}">{{post.author}}</a> </h5>
+            <p>{{post.text}}</p>
+        </div>
+    {% endfor %}
+
+    <div>
+        <h3> You can find my <em> <strong> VK </strong></em>
+            page <a href="https://vk.com/vireal">here</a> !
+        </h3>
+    </div>
 
 </body>
 </html>
